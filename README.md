@@ -1,6 +1,6 @@
 # kotlin-android-template 🤖
 
-[![Use this template](https://img.shields.io/badge/from-kotlin--android--template-brightgreen?logo=dropbox)](https://github.com/cortinico/kotlin-android-template/generate) ![Pre Merge Checks](https://github.com/cortinico/kotlin-android-template/workflows/Pre%20Merge%20Checks/badge.svg)  ![License](https://img.shields.io/github/license/cortinico/kotlin-android-template.svg) ![Language](https://img.shields.io/github/languages/top/cortinico/kotlin-android-template?color=blue&logo=kotlin)
+[![Use this template](https://img.shields.io/badge/from-androidtemplate-brightgreen?logo=dropbox)](https://github.com/meliksahcakirr/androidtemplate/generate) ![Pre Merge Checks](https://github.com/meliksahcakirr/androidtemplate/workflows/Pre%20Merge%20Checks/badge.svg) ![Language](https://img.shields.io/github/languages/top/meliksahcakirr/androidtemplate?color=blue&logo=kotlin)
 
 A simple Github template that lets you create an **Android/Kotlin** project and be up and running in a **few seconds**. 
 
@@ -8,7 +8,7 @@ This template is focused on delivering a project with **static analysis** and **
 
 ## How to use 👣
 
-Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/cortinico/kotlin-android-template/generate) button to create a new repo starting from this template.
+Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/meliksahcakirr/androidtemplate/generate) button to create a new repo starting from this template.
 
 Once created don't forget to update the:
 - [App ID](buildSrc/src/main/java/Coordinates.kt)
@@ -18,7 +18,7 @@ Once created don't forget to update the:
 ## Features 🎨
 
 - **100% Kotlin-only template**.
-- 3 Sample modules (Android app, Android library, Kotlin library).
+- 2 Sample modules (Android app, Android library).
 - Sample Espresso, Instrumentation & JUnit tests.
 - 100% Gradle Kotlin DSL setup.
 - Dependency versions managed via `buildSrc`.
@@ -42,7 +42,7 @@ This template is also using [**detekt**](https://github.com/detekt/detekt) to an
 
 ## CI ⚙️
 
-This template is using [**GitHub Actions**](https://github.com/cortinico/kotlin-android-template/actions) as CI. You don't need to setup any external service and you should have a running CI once you start using this template.
+This template is using [**GitHub Actions**](https://github.com/meliksahcakirr/androidtemplate/actions) as CI. You don't need to setup any external service and you should have a running CI once you start using this template.
 
 There are currently the following workflows available:
 - [Validate Gradle Wrapper](.github/workflows/gradle-wrapper-validation.yml) - Will check that the gradle wrapper has a valid checksum
