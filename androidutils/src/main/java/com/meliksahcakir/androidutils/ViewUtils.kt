@@ -19,15 +19,21 @@ import kotlin.math.hypot
  * Extension function to simplify setting an afterTextChanged action to EditText components.
  */
 fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-    this.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(editable: Editable?) {
-            afterTextChanged.invoke(editable.toString())
+    this.addTextChangedListener(
+        object : TextWatcher {
+            override fun afterTextChanged(editable: Editable?) {
+                afterTextChanged.invoke(editable.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // no-op
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // no-op
+            }
         }
-
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-    })
+    )
 }
 
 fun View.hideKeyboard() {
@@ -53,23 +59,32 @@ fun View.startCircularReveal(
     posY: Int? = null,
     duration: Long = 1000
 ) {
-    addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
-        override fun onLayoutChange(
-            v: View, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int,
-            oldRight: Int, oldBottom: Int
-        ) {
-            v.removeOnLayoutChangeListener(this)
-            val cx = posX ?: (v.left + v.right) / 2
-            val cy = posY ?: v.bottom
-            val r = hypot(right.toDouble(), bottom.toDouble()).toInt()
-            ViewAnimationUtils.createCircularReveal(v, cx, cy, 0f, r.toFloat()).apply {
-                interpolator = FastOutSlowInInterpolator()
-                this.duration = duration / 2
-                start()
+    addOnLayoutChangeListener(
+        object : View.OnLayoutChangeListener {
+            override fun onLayoutChange(
+                v: View,
+                left: Int,
+                top: Int,
+                right: Int,
+                bottom: Int,
+                oldLeft: Int,
+                oldTop: Int,
+                oldRight: Int,
+                oldBottom: Int
+            ) {
+                v.removeOnLayoutChangeListener(this)
+                val cx = posX ?: (v.left + v.right) / 2
+                val cy = posY ?: v.bottom
+                val r = hypot(right.toDouble(), bottom.toDouble()).toInt()
+                ViewAnimationUtils.createCircularReveal(v, cx, cy, 0f, r.toFloat()).apply {
+                    interpolator = FastOutSlowInInterpolator()
+                    this.duration = duration / 2
+                    start()
+                }
+                startColorAnimation(startColor, endColor, duration / 2)
             }
-            startColorAnimation(startColor, endColor, duration / 2)
         }
-    })
+    )
 }
 
 fun View.exitCircularReveal(
@@ -84,12 +99,14 @@ fun View.exitCircularReveal(
     ViewAnimationUtils.createCircularReveal(this, exitX, exitY, startRadius.toFloat(), 0f).apply {
         this.duration = duration
         interpolator = FastOutSlowInInterpolator()
-        addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
-                isVisible = false
-                block()
+        addListener(
+            object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    isVisible = false
+                    block()
+                }
             }
-        })
+        )
         start()
     }
     startColorAnimation(startColor, endColor, duration)
