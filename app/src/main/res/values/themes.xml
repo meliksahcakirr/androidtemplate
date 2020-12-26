@@ -28,9 +28,9 @@
         <item name="fontFamily">@font/montserrat</item>
     </style>
 
-    <style name="MaterialCardViewStyle" parent="Widget.MaterialComponents.CardView">
+    <!--<style name="MaterialCardViewStyle" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">8dp</item>
         <item name="cardElevation">8dp</item>
-    </style>
+    </style>-->
 
 </resources>
